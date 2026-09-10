@@ -49,42 +49,82 @@ export const profiles: Record<ProfileKey, {
   name: string;
   shortName: string;
   essence: string;
+  rootCause: string;
   strengths: string[];
+  coreWounds: string[];
+  fears: string[];
+  emotions: string[];
   needs: string[];
+  expectations: string[];
   triggers: string[];
+  communication: string[];
+  coping: string[];
+  secureAlternatives: string[];
   growth: string[];
 }> = {
   secure: {
-    name: 'Secure Attachment', shortName: 'Secure',
+    name: 'Secure', shortName: 'Secure',
     essence: 'You tend to experience closeness and independence as compatible. You can usually communicate needs, tolerate ordinary relationship uncertainty, and return to connection after conflict.',
-    strengths: ['Emotional steadiness', 'Direct communication', 'Respect for mutual boundaries', 'Capacity for repair'],
-    needs: ['Consistency', 'Reciprocity', 'Honest communication', 'Room for both closeness and autonomy'],
-    triggers: ['Prolonged dishonesty', 'Repeated boundary violations', 'Relationships that resist mutual repair'],
-    growth: ['Keep naming needs before resentment builds', 'Avoid taking responsibility for all of the emotional steadiness', 'Stay curious when another person’s pattern differs from yours'],
+    rootCause: 'Secure functioning grows from enough repeated experiences of care, responsiveness, repair, and respect. It does not mean you had a perfect past or never feel activated; it means you can usually remain connected to yourself and another person at the same time.',
+    strengths: ['Emotionally regulated and balanced', 'Clear, considerate communication', 'Respect for your own and others’ boundaries', 'Capacity for honest repair and compromise', 'Comfort with both intimacy and independence'],
+    coreWounds: ['Your reactions are usually more connected to the present situation than to one dominant attachment wound', 'Stress may still activate older personal experiences, especially in an unusually unsafe or inconsistent relationship'],
+    fears: ['Prolonged dishonesty or betrayal', 'A relationship that repeatedly refuses repair', 'Ongoing disrespect, toxicity, or unfairness'],
+    emotions: ['Calm and present more often than overwhelmed', 'Able to feel disappointment without losing your center', 'Open to joy, connection, grief, and vulnerability'],
+    needs: ['Stability and clarity', 'Reciprocity and teamwork', 'Honest communication', 'Growth and shared enjoyment', 'Room for both closeness and autonomy'],
+    expectations: ['Both people can speak, listen, and be taken seriously', 'Conflict can be worked through without becoming excessive', 'Partners can rely on one another without losing themselves', 'A healthy relationship includes both shared and separate lives'],
+    triggers: ['Repeated dishonesty', 'Persistent boundary violations', 'Contempt or manipulation', 'Relationships that resist mutual repair'],
+    communication: ['Open and direct without being needlessly harsh', 'Able to listen while holding your own perspective', 'Can ask for support and give space', 'Generally patient during repair'],
+    coping: ['Speak up and work through the issue', 'Seek perspective from trusted people', 'Take a clear pause and return', 'Use self-soothing without abandoning the relationship'],
+    secureAlternatives: ['Keep naming needs before resentment builds', 'Let another person carry their share of the emotional work', 'Stay curious when another attachment pattern differs from yours'],
+    growth: ['Maintain your boundaries when someone else is activated', 'Avoid over-functioning as the “secure one”', 'Continue choosing relationships that support mutuality and repair'],
   },
   anxious: {
-    name: 'Anxious Preoccupied Attachment', shortName: 'Anxious Preoccupied',
+    name: 'Anxious Preoccupied', shortName: 'Anxious Preoccupied',
     essence: 'Connection matters deeply to you, and your attachment system may become highly alert to distance, inconsistency, or uncertainty. You may seek quick reassurance when closeness feels threatened.',
-    strengths: ['Emotional attunement', 'Warmth and loyalty', 'Willingness to engage', 'Sensitivity to relationship shifts'],
-    needs: ['Consistency', 'Clear reassurance', 'Emotional responsiveness', 'Reliable follow-through'],
-    triggers: ['Silence or delayed responses', 'Ambiguous commitment', 'Sudden changes in warmth', 'Feeling excluded or deprioritized'],
-    growth: ['Pause before treating uncertainty as proof', 'Ask directly instead of testing connection', 'Build self-soothing alongside healthy reassurance', 'Practice boundaries that protect your own energy'],
+    rootCause: 'This pattern often develops when care or attention felt inconsistent, unpredictable, or connected to how well you pleased others. Your system learned to monitor closeness closely and move toward connection quickly because distance could feel like danger.',
+    strengths: ['Warm, thoughtful, and attentive', 'Emotionally perceptive and expressive', 'Loyal, collaborative, and willing to repair', 'Generous with encouragement and care', 'Able to build connection quickly'],
+    coreWounds: ['I may be abandoned or left alone', 'I am not good enough or lovable enough', 'I may be rejected, excluded, or disliked', 'I must work to keep connection'],
+    fears: ['Being rejected or replaced', 'Being excluded or seen as “bad”', 'Losing the relationship after conflict', 'Not being important enough to someone'],
+    emotions: ['Anxiety and worry', 'Loneliness and insecurity', 'Urgency or desperation', 'Sadness and regret'],
+    needs: ['Consistency and follow-through', 'Closeness and emotional presence', 'Reassurance and validation', 'To feel seen, heard, and included', 'Collaboration and partnership'],
+    expectations: ['A partner will be emotionally available when you need reassurance', 'Closeness should be restored quickly after tension', 'Important people will notice needs without always being asked', 'The relationship will remain a clear priority'],
+    triggers: ['Silence or delayed responses', 'Ambiguous commitment', 'Sudden changes in warmth', 'Feeling excluded or deprioritized', 'A boundary that sounds like rejection'],
+    communication: ['May lead with feelings and explain in detail', 'Can be vulnerable and eager to talk things through', 'May agree or over-give to prevent disapproval', 'May repeat the point when reassurance has not landed'],
+    coping: ['Reassurance-seeking or repeated checking', 'People-pleasing and self-abandonment', 'Testing the relationship or provoking proof of care', 'Over-explaining, criticizing, or urgently pursuing repair', 'Managing another person’s feelings at your own expense'],
+    secureAlternatives: ['Name the fear before acting on it', 'Ask one direct question instead of testing', 'Regulate first, then request reassurance clearly', 'Keep a boundary even when closeness feels uncertain'],
+    growth: ['Pause before treating uncertainty as proof', 'Build self-soothing alongside healthy reassurance', 'Let consistency accumulate over time', 'Practice boundaries that protect your energy and identity'],
   },
   dismissive: {
-    name: 'Dismissive Avoidant Attachment', shortName: 'Dismissive Avoidant',
+    name: 'Dismissive Avoidant', shortName: 'Dismissive Avoidant',
     essence: 'Self-reliance may feel safer than emotional dependence. When closeness or conflict becomes intense, you may protect yourself by minimizing needs, becoming highly practical, or creating distance.',
-    strengths: ['Independence', 'Composure under pressure', 'Practical problem-solving', 'Respect for autonomy'],
-    needs: ['Time to process', 'Respectful directness', 'Choice and personal space', 'Low-pressure invitations to connect'],
-    triggers: ['Feeling controlled', 'Emotional urgency', 'Repeated demands for immediate disclosure', 'Fear of losing autonomy'],
-    growth: ['Name the need for space without disappearing', 'Practice sharing one layer more than feels automatic', 'Notice when self-reliance becomes isolation', 'Return to repair at a specific time'],
+    rootCause: 'This pattern often develops when vulnerability, dependence, or emotional expression was not reliably welcomed. Your system learned that competence and self-containment were safer than needing others, so distance can become the fastest route back to control.',
+    strengths: ['Independent, practical, and resilient', 'Calm and analytical under pressure', 'Comfortable setting limits', 'Thoughtful problem-solver', 'Protective of harmony and autonomy'],
+    coreWounds: ['I am unsafe when I depend on others', 'I may become trapped or overwhelmed', 'My feelings or needs will be dismissed', 'If I am vulnerable, I may be weak or rejected'],
+    fears: ['Losing freedom or being controlled', 'Being criticized or emotionally overwhelmed', 'Having to depend too heavily on another person', 'Conflict that becomes endless or engulfing'],
+    emotions: ['Irritation and frustration', 'Numbness or depletion', 'Shame kept out of view', 'Loneliness that may be difficult to name'],
+    needs: ['Safety and harmony', 'Time and space to process', 'Respect for independence', 'Clear, low-pressure communication', 'Appreciation and intellectual connection'],
+    expectations: ['Space will be respected without punishment', 'Each person can meet many of their own needs', 'Conflict will not consume the relationship', 'Requests will be clear, practical, and contained'],
+    triggers: ['Feeling controlled or pressured', 'Emotional urgency', 'Repeated demands for immediate disclosure', 'Criticism or disrespect', 'A boundary being ignored'],
+    communication: ['May communicate more through actions than words', 'Can become brief, logical, or indirect under stress', 'May avoid conflict or try to end it quickly', 'May need private processing before discussing feelings'],
+    coping: ['Withdrawing to decompress', 'Stonewalling or going quiet', 'Minimizing feelings and needs', 'Over-relying on work, screens, food, alcohol, gaming, or other comforts', 'Passive resistance or delayed engagement'],
+    secureAlternatives: ['State the need for space and name a return time', 'Share one honest feeling before solving the problem', 'Differentiate healthy independence from isolation', 'Let support in through small, specific requests'],
+    growth: ['Name the need for space without disappearing', 'Practice sharing one layer more than feels automatic', 'Return to repair at a specific time', 'Allow interdependence without treating it as loss of self'],
   },
   fearful: {
-    name: 'Fearful Avoidant Attachment', shortName: 'Fearful Avoidant',
+    name: 'Fearful Avoidant', shortName: 'Fearful Avoidant',
     essence: 'You may deeply want closeness while also experiencing it as risky. Your system can move between reaching for connection and protecting itself through distance, especially when trust or safety feels uncertain.',
-    strengths: ['Depth and sensitivity', 'Strong perception of interpersonal dynamics', 'Capacity for empathy', 'Courage developed through complexity'],
-    needs: ['Emotional safety', 'Predictability', 'Patient trust-building', 'Clear and respectful boundaries'],
-    triggers: ['Mixed signals', 'Feeling trapped or abandoned', 'Sudden emotional intensity', 'Betrayal or perceived loss of control'],
-    growth: ['Slow the reach-withdraw cycle', 'Separate present cues from earlier danger', 'Use small, consistent acts of trust', 'Ask for paced connection instead of choosing all-or-nothing'],
+    rootCause: 'This pattern often forms when closeness was both deeply wanted and connected with fear, unpredictability, betrayal, or powerlessness. Your system learned two protective moves—reach for safety and retreat from danger—so it may alternate between them quickly.',
+    strengths: ['Deep, perceptive, and emotionally sensitive', 'Resilient and courageous', 'Generous, nurturing, and empathetic', 'Strong awareness of nuance and trust', 'Passionate and capable of profound connection'],
+    coreWounds: ['I may be betrayed or abandoned', 'I am unsafe when I lose control', 'I may be trapped, powerless, or humiliated', 'I am unworthy, weak, or not good enough'],
+    fears: ['Betrayal or deception', 'Being trapped, controlled, or powerless', 'Being publicly shamed or seen as “bad”', 'Being emotionally attacked or abandoned'],
+    emotions: ['Fear and anxiety', 'Anger and hurt', 'Overwhelm and frustration', 'Guilt or shame'],
+    needs: ['Trust and emotional depth', 'Predictability and patient pacing', 'Independence alongside intimacy', 'Respectful, explicit boundaries', 'Presence, passion, and growth'],
+    expectations: ['Trust will not be broken', 'A partner will consistently show that you are wanted', 'Independence will be respected', 'Your thoughts, feelings, and perceptions will be taken seriously'],
+    triggers: ['Mixed signals or secrecy', 'Feeling trapped or abandoned', 'Disrespect or dismissal', 'Sudden changes or pressure', 'Boundary violations or loss of control'],
+    communication: ['May explain intensely and notice subtle inconsistencies', 'Can move from agreeable to confrontational when threatened', 'Wants emotional depth but may limit vulnerability', 'May fear appearing weak or giving another person leverage'],
+    coping: ['Reaching for connection and then withdrawing', 'Testing loyalty or investigating for certainty', 'Fight, flight, freeze, or people-pleasing', 'Stonewalling, criticism, or emotional volatility', 'Using isolation or comforts to escape overwhelm'],
+    secureAlternatives: ['Slow the reach-withdraw cycle before making a decision', 'Ask for paced connection and clear facts', 'Separate present cues from earlier danger', 'Use boundaries before distress becomes an explosion'],
+    growth: ['Build trust through small, consistent experiences', 'Replace all-or-nothing decisions with paced choices', 'Practice direct requests without testing', 'Develop regulation skills that work before and during conflict'],
   },
 };
 

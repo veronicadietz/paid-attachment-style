@@ -51,7 +51,7 @@ Content-Type: application/json
 x-ivorey-secret: the same value as IVOREY_WEBHOOK_SECRET
 ```
 
-Map the Ivorey customer/order values into this JSON body:
+Ivorey's standard webhook payload already contains contact details. The endpoint accepts standard root fields, nested `contact` fields, and Custom Data, so only a valid purchaser email is required. Optional Custom Data can be added as:
 
 ```json
 {
@@ -70,7 +70,7 @@ Set the paid form's successful-payment redirect to:
 https://paid.securelyloved.com/?first_name={{contact.first_name}}&email={{contact.email}}&contact_id={{contact.id}}
 ```
 
-The exact merge-field names may differ in Ivorey. Select the matching contact fields from Ivorey's merge-field picker rather than typing placeholders if the builder provides one.
+If the builder shows a tag icon instead of a field dropdown, click the tag icon to insert the Contact Email, Contact First Name, and Contact ID values. Do not type instructional phrases as values. Save the action, switch the workflow from **Draft** to **Publish**, and test with the same product used by the checkout.
 
 ## Ivorey report email
 

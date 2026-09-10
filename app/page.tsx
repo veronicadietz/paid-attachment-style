@@ -79,10 +79,19 @@ export default function Home() {
     if (!consent) return setError('Please confirm that you understand how your responses will be used.');
     setCheckingAccess(true);
     try {
-      const response = await fetch('/api/access', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
-      const data = await response.json() as { accessToken?: string; error?: string };
-      if (!response.ok || !data.accessToken) throw new Error(data.error ?? 'We could not confirm your purchase.');
-      setAccessToken(data.accessToken);
+      let token = '';
+      let message = 'We could not confirm your purchase.';
+      // Checkout redirects can arrive a few seconds before Ivorey's payment
+      // webhook. Retry briefly so a normal timing race does not block a buyer.
+      for (let attempt = 0; attempt < 5; attempt += 1) {
+        const response = await fetch('/api/access', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+        const data = await response.json() as { accessToken?: string; error?: string };
+        if (response.ok && data.accessToken) { token = data.accessToken; break; }
+        message = data.error ?? message;
+        if (attempt < 4) await new Promise((resolve) => window.setTimeout(resolve, 2000));
+      }
+      if (!token) throw new Error(message);
+      setAccessToken(token);
       setPhase('quiz');
     } catch (accessError) {
       setError(accessError instanceof Error ? accessError.message : 'We could not confirm your purchase.');

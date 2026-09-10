@@ -13,9 +13,14 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://securely-loved-attachment-profile.veronica388151.chatgpt.site'),
+  metadataBase: new URL('https://paid.securelyloved.com'),
   title: 'Personalized Attachment Profile | Securely Loved',
   description: 'A personalized attachment profile created by Bev Mitelman, M.A.',
+  icons: {
+    icon: [{ url: '/favicon.png', type: 'image/png' }],
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
   openGraph: {
     title: 'Personalized Attachment Profile | Securely Loved',
     description: 'Understand the patterns behind how you love, communicate, and repair.',

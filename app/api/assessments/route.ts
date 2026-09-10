@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { scoreAssessment } from '@/lib/assessment';
+import { profiles, scoreAssessment } from '@/lib/assessment';
 import { verifyAccessToken } from '@/lib/access';
 import { blobIsConfigured, saveAssessment, saveReport, sha256 } from '@/lib/blob-store';
 import { createAttachmentReport } from '@/lib/report';
@@ -60,8 +60,8 @@ export async function POST(request: Request) {
             firstName,
             email,
             ivoreyContactId: body.ivoreyContactId ?? null,
-            primaryStyle: scores.primary,
-            secondaryStyle: scores.secondary,
+            primaryStyle: profiles[scores.primary].name,
+            secondaryStyle: profiles[scores.secondary].name,
             isBlend: scores.isBlend,
             reportUrl: downloadUrl,
             completedAt: createdAt.toISOString(),
