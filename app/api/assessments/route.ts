@@ -5,6 +5,7 @@ import { profiles, scoreAssessment } from '@/lib/assessment';
 import { verifyAccessToken } from '@/lib/access';
 import { blobIsConfigured, saveAssessment, saveReport, sha256 } from '@/lib/blob-store';
 import { createAttachmentReport } from '@/lib/report';
+import { DEBRIEF_BOOKING_URL } from '@/lib/product';
 
 export const runtime = 'nodejs';
 
@@ -64,6 +65,7 @@ export async function POST(request: Request) {
             secondaryStyle: profiles[scores.secondary].name,
             isBlend: scores.isBlend,
             reportUrl: downloadUrl,
+            debriefBookingUrl: DEBRIEF_BOOKING_URL,
             completedAt: createdAt.toISOString(),
           }),
         });

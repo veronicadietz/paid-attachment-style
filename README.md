@@ -1,6 +1,6 @@
 # Securely Loved Personalized Attachment Profile
 
-Paid, branded attachment assessment for Securely Loved. It includes 32 original questions, close-result blend detection, an immediate personalized PDF, private report storage, purchase verification, and Ivorey delivery hooks.
+Paid, branded attachment assessment for Securely Loved. It includes 32 original questions, one definitive primary attachment-style result, an immediate personalized PDF, private report storage, purchase verification, and Ivorey delivery hooks.
 
 ## The stack
 
@@ -43,7 +43,7 @@ IVOREY_RESULT_WEBHOOK_URL=https://the-inbound-webhook-url-created-in-ivorey
 
 ## Ivorey purchase verification
 
-Create an Ivorey workflow triggered after successful payment for **Personalized Attachment Profile — $47**. Add a webhook action:
+Create an Ivorey workflow triggered after successful payment for **Personalized Attachment Profile - $19**. Add a webhook action:
 
 ```text
 POST https://paid.securelyloved.com/api/ivorey/order
@@ -60,7 +60,7 @@ Ivorey's standard webhook payload already contains contact details. The endpoint
   "firstName": "contact first name",
   "contactId": "Ivorey contact id",
   "productName": "Personalized Attachment Profile",
-  "amountCents": 4700
+  "amountCents": 1900
 }
 ```
 
@@ -87,11 +87,12 @@ Create an inbound webhook workflow in Ivorey and put that webhook URL in `IVOREY
   "secondaryStyle": "secondary style",
   "isBlend": true,
   "reportUrl": "secure seven-day download link",
+  "debriefBookingUrl": "https://links.ivorey.io/widget/bookings/attachment-style-debrief",
   "completedAt": "ISO timestamp"
 }
 ```
 
-Use those values to find/update the contact and send the delivery email from `bev@securelyloved.com`. Put `reportUrl` behind a button such as **Download My Personalized Profile**. The buyer also receives the same immediate download link on the results screen.
+Use those values to find/update the contact and send the delivery email from `bev@securelyloved.com`. Put `reportUrl` behind a button such as **Download My Personalized Profile**, and put `debriefBookingUrl` behind the post-delivery upsell button **Book My Personalized Results Debrief**. The buyer also receives both actions on the results screen.
 
 ## Report retention and customer copies
 

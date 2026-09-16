@@ -32,99 +32,106 @@ export const questions: Question[] = [
   { id: 19, text: 'I become irritated when someone expects me to talk about feelings before I am ready.', axis: 'avoidance', domain: 'communication' },
   { id: 20, text: 'I trust that healthy conflict can lead to understanding rather than abandonment.', axis: 'secure', domain: 'conflict' },
   { id: 21, text: 'I feel responsible for restoring closeness as quickly as possible after tension.', axis: 'anxiety', domain: 'repair' },
-  { id: 22, text: 'I minimize my needs because needing less feels more secure.', axis: 'avoidance', domain: 'needs' },
+  { id: 22, text: "I minimize my needs because I don't want to come across as needy.", axis: 'avoidance', domain: 'needs' },
   { id: 23, text: 'I can receive care without immediately questioning it or pulling away.', axis: 'avoidance', domain: 'trust', reverse: true },
   { id: 24, text: 'Even in a stable relationship, I sometimes expect to be left or replaced.', axis: 'anxiety', domain: 'trust' },
   { id: 25, text: 'When I am hurt, distance feels more manageable than working through it together.', axis: 'avoidance', domain: 'repair' },
   { id: 26, text: 'I can name what I feel and make a clear request.', axis: 'secure', domain: 'needs' },
-  { id: 27, text: 'I become preoccupied with where I stand when someone seems less available.', axis: 'anxiety', domain: 'closeness' },
+  { id: 27, text: 'I become preoccupied with what I mean to someone when I perceive they are becoming less available to me.', axis: 'anxiety', domain: 'closeness' },
   { id: 28, text: 'I find it difficult to stay present when someone is upset with me.', axis: 'avoidance', domain: 'conflict' },
   { id: 29, text: 'I can take space during conflict and clearly communicate when I will return.', axis: 'secure', domain: 'repair' },
   { id: 30, text: 'Strong emotions can make me act before I have had time to understand what I need.', axis: 'anxiety', domain: 'regulation' },
-  { id: 31, text: 'People close to me sometimes experience me as emotionally hard to reach.', axis: 'avoidance', domain: 'communication' },
+  { id: 31, text: 'People close to me have told me they find me hard to reach emotionally, at times.', axis: 'avoidance', domain: 'communication' },
   { id: 32, text: 'I can let closeness develop gradually without chasing it or resisting it.', axis: 'anxiety', domain: 'closeness', reverse: true },
 ];
 
-export const profiles: Record<ProfileKey, {
+export type AttachmentProfile = {
   name: string;
   shortName: string;
   essence: string;
-  rootCause: string;
-  strengths: string[];
-  coreWounds: string[];
+  introduction: string;
+  characteristics: string[];
+  primaryCoreWound: string;
+  otherCoreWounds: string[];
+  emotionalPatterns: string[];
   fears: string[];
-  emotions: string[];
-  needs: string[];
+  personalityNeeds: string[];
+  relationshipNeeds: string[];
+  conflictPatterns: string[];
+  boundaries: string[];
+  communicationStrategies: string[];
+  copingMechanisms: string[];
   expectations: string[];
-  triggers: string[];
-  communication: string[];
-  coping: string[];
-  secureAlternatives: string[];
-  growth: string[];
-}> = {
+};
+
+export const profiles: Record<ProfileKey, AttachmentProfile> = {
   secure: {
-    name: 'Secure', shortName: 'Secure',
-    essence: 'You tend to experience closeness and independence as compatible. You can usually communicate needs, tolerate ordinary relationship uncertainty, and return to connection after conflict.',
-    rootCause: 'Secure functioning grows from enough repeated experiences of care, responsiveness, repair, and respect. It does not mean you had a perfect past or never feel activated; it means you can usually remain connected to yourself and another person at the same time.',
-    strengths: ['Emotionally regulated and balanced', 'Clear, considerate communication', 'Respect for your own and others’ boundaries', 'Capacity for honest repair and compromise', 'Comfort with both intimacy and independence'],
-    coreWounds: ['Your reactions are usually more connected to the present situation than to one dominant attachment wound', 'Stress may still activate older personal experiences, especially in an unusually unsafe or inconsistent relationship'],
-    fears: ['Prolonged dishonesty or betrayal', 'A relationship that repeatedly refuses repair', 'Ongoing disrespect, toxicity, or unfairness'],
-    emotions: ['Calm and present more often than overwhelmed', 'Able to feel disappointment without losing your center', 'Open to joy, connection, grief, and vulnerability'],
-    needs: ['Stability and clarity', 'Reciprocity and teamwork', 'Honest communication', 'Growth and shared enjoyment', 'Room for both closeness and autonomy'],
-    expectations: ['Both people can speak, listen, and be taken seriously', 'Conflict can be worked through without becoming excessive', 'Partners can rely on one another without losing themselves', 'A healthy relationship includes both shared and separate lives'],
-    triggers: ['Repeated dishonesty', 'Persistent boundary violations', 'Contempt or manipulation', 'Relationships that resist mutual repair'],
-    communication: ['Open and direct without being needlessly harsh', 'Able to listen while holding your own perspective', 'Can ask for support and give space', 'Generally patient during repair'],
-    coping: ['Speak up and work through the issue', 'Seek perspective from trusted people', 'Take a clear pause and return', 'Use self-soothing without abandoning the relationship'],
-    secureAlternatives: ['Keep naming needs before resentment builds', 'Let another person carry their share of the emotional work', 'Stay curious when another attachment pattern differs from yours'],
-    growth: ['Maintain your boundaries when someone else is activated', 'Avoid over-functioning as the “secure one”', 'Continue choosing relationships that support mutuality and repair'],
+    name: 'Secure Attachment', shortName: 'Secure Attachment',
+    essence: 'You tend to feel comfortable with both closeness and independence. You generally trust that you are worthy of love, that others can be available, and that relationships can survive conflict and big emotions.',
+    introduction: 'Secure attachment generally develops when a child experiences their caregiver as emotionally available, responsive, and predictable most of the time. When they\'re upset, someone notices. When they reach for comfort, they\'re usually met with warmth rather than rejection or dismissal. Their feelings are allowed to exist, and they learn that needing other people doesn\'t make them needy or "too much." Over time, the child internalizes a powerful message: I am worthy of love, and the people I love can be trusted to be there for me. They learn that relationships can survive conflict, separation, and big emotions. As adults, they tend to feel comfortable with both closeness and independence because neither one feels particularly threatening.',
+    characteristics: ['Emotionally regulated', 'Balanced', 'Excellent at sharing boundaries', 'Clear on your needs', 'You do not mind conflict but do not end up in unnecessary conflict', 'You can often focus or redirect your mind away from core wounds, fears, unmet needs, and resentments', 'Good at speaking up for yourself and asking for an opportunity or a raise', 'Good at working with others', 'Strong communicator', 'Can hear and understand multiple people’s perspectives', 'Not quick to be involved in drama and good at trading and staying away from it', 'Feel worthy of asking for your needs and sharing your opinion', 'Naturally more comfortable sharing feelings and opinions with others', 'Active listener', 'Less likely to take things personally', 'Trusting', 'Stable', 'Trustworthy', 'Honest'],
+    primaryCoreWound: 'No dominant attachment core wound',
+    otherCoreWounds: ['Your core wounds are more likely to be based on individual experiences from the past rather than overarching themes based on attachment style'],
+    emotionalPatterns: ['More optimistic', 'Calm', 'Open', 'Joyful', 'Present'],
+    fears: ['Whatever is unresolved from your past is less likely to fall into a patterned category', 'Disrespect, toxicity, or unfairness are outside your comfort zone'],
+    personalityNeeds: ['Stability', 'Harmony', 'Growth', 'Connection', 'Empowerment', 'Clarity', 'Certainty', 'Open to change in a healthy amount', 'Balance (work-life balance)', 'To be heard', 'Enjoyment'],
+    relationshipNeeds: ['Stability', 'Harmony', 'Connection', 'Growth', 'Balance', 'Clear and honest communication'],
+    conflictPatterns: ['Very much value working through conflict', 'Do not like to leave things unresolved', 'Feel relatively comfortable working through conflict though you do not seek it out', 'Communicate effectively', 'Do not take things as personally', 'Good at asserting boundaries', 'Do not mind being vulnerable', 'Can share feelings', 'Can validate the other person’s feelings and perspectives well', 'Will be respectful in conflict-oriented situations', 'Want both parties to feel happy about the resolution', 'Fair'],
+    boundaries: ['Assertive', 'Respectful of self and others', 'Clear at communicating', 'Authentic', 'Fairly consistent at communicating boundaries', 'Validate others’ emotions and perspectives', 'Attuned to self', 'Take self into consideration', 'Feel worthy of setting boundaries'],
+    communicationStrategies: ['Often fair', 'Considerate', 'Conscientious', 'Open when communicating', 'Good at listening to others and taking their opinions into consideration', 'Have no problem asserting themselves if they feel it is the right thing', 'Value their own opinions and will share them with others', 'Will speak up if they feel there is a problem', 'Want everyone to get along and be a team', 'Respectful', 'Generally quite patient'],
+    copingMechanisms: ['Will speak up', 'Will see needs through', 'Will go to a partner to work things out', 'Can also self-soothe well', 'Will try to deal with things more immediately and dislike repressing', 'May seek external help or support from family and friends', 'Will take time to reflect when needed'],
+    expectations: ['A partner should want to resolve things', 'Conflict is normal but should not be excessive', 'Both parties should be able to be heard, understood, and seen in a relationship', 'Interdependence', 'Partners can emotionally rely on each other', 'Partners will work through things when faced with challenges', 'Difficult moments happen in relationships, but they will work as a team through them', 'A relationship should extend to all areas of life'],
   },
   anxious: {
-    name: 'Anxious Preoccupied', shortName: 'Anxious Preoccupied',
-    essence: 'Connection matters deeply to you, and your attachment system may become highly alert to distance, inconsistency, or uncertainty. You may seek quick reassurance when closeness feels threatened.',
-    rootCause: 'This pattern often develops when care or attention felt inconsistent, unpredictable, or connected to how well you pleased others. Your system learned to monitor closeness closely and move toward connection quickly because distance could feel like danger.',
-    strengths: ['Warm, thoughtful, and attentive', 'Emotionally perceptive and expressive', 'Loyal, collaborative, and willing to repair', 'Generous with encouragement and care', 'Able to build connection quickly'],
-    coreWounds: ['I may be abandoned or left alone', 'I am not good enough or lovable enough', 'I may be rejected, excluded, or disliked', 'I must work to keep connection'],
-    fears: ['Being rejected or replaced', 'Being excluded or seen as “bad”', 'Losing the relationship after conflict', 'Not being important enough to someone'],
-    emotions: ['Anxiety and worry', 'Loneliness and insecurity', 'Urgency or desperation', 'Sadness and regret'],
-    needs: ['Consistency and follow-through', 'Closeness and emotional presence', 'Reassurance and validation', 'To feel seen, heard, and included', 'Collaboration and partnership'],
-    expectations: ['A partner will be emotionally available when you need reassurance', 'Closeness should be restored quickly after tension', 'Important people will notice needs without always being asked', 'The relationship will remain a clear priority'],
-    triggers: ['Silence or delayed responses', 'Ambiguous commitment', 'Sudden changes in warmth', 'Feeling excluded or deprioritized', 'A boundary that sounds like rejection'],
-    communication: ['May lead with feelings and explain in detail', 'Can be vulnerable and eager to talk things through', 'May agree or over-give to prevent disapproval', 'May repeat the point when reassurance has not landed'],
-    coping: ['Reassurance-seeking or repeated checking', 'People-pleasing and self-abandonment', 'Testing the relationship or provoking proof of care', 'Over-explaining, criticizing, or urgently pursuing repair', 'Managing another person’s feelings at your own expense'],
-    secureAlternatives: ['Name the fear before acting on it', 'Ask one direct question instead of testing', 'Regulate first, then request reassurance clearly', 'Keep a boundary even when closeness feels uncertain'],
-    growth: ['Pause before treating uncertainty as proof', 'Build self-soothing alongside healthy reassurance', 'Let consistency accumulate over time', 'Practice boundaries that protect your energy and identity'],
+    name: 'Anxious Preoccupied Attachment', shortName: 'Anxious Preoccupied Attachment',
+    essence: 'You may stay highly tuned in to shifts in mood, distance, and attention because connection can feel uncertain. This can show up as overthinking, reassurance-seeking, fear of abandonment, and feeling especially activated when someone you love pulls away.',
+    introduction: 'Anxious attachment often develops when love and emotional availability feel inconsistent or unpredictable. Sometimes a caregiver is warm, attentive, and deeply connected - and other times they may be distracted, unavailable, overwhelmed, or difficult to reach emotionally. The child doesn\'t know which version of connection they\'re going to get, so they learn to stay very tuned in to the caregiver. They may become especially sensitive to changes in mood, tone, distance, or attention because noticing those shifts helps them preserve connection. The nervous system essentially learns, I need to stay close and pay attention, because connection could disappear. As adults, this can show up as overthinking, reassurance-seeking, fear of abandonment, and feeling especially activated when someone they love begins to pull away.',
+    characteristics: ['Charismatic', 'Thoughtful', 'Kind', 'Attentive in close relationships', 'Warm', 'Likeable', 'Move quickly in relationships of all types', 'Friendly', 'Flexible', 'Supportive', 'Collaborative', 'Trusting of connection', 'Prioritize relationships', 'Value social interaction and inclusion'],
+    primaryCoreWound: 'I will be abandoned',
+    otherCoreWounds: ['I am unsafe', 'I will be alone', 'I am not good enough', 'I am/will be rejected', 'I am/will be unloved', 'I am excluded', 'I am/will be disliked', 'I am bad'],
+    emotionalPatterns: ['Lonely', 'Insecure', 'Fearful', 'Anxious', 'Worry', 'Desperation', 'Regret', 'Sad'],
+    fears: ['Not being good enough', 'Being rejected', 'Failing', 'Being disliked or excluded', 'Getting in trouble or being seen as “bad”', 'Being abandoned in some way, such as being fired out of the blue or everyone turning on you'],
+    personalityNeeds: ['Validation', 'Encouragement', 'To feel seen and heard', 'To feel valued', 'Respond significantly better to positive reinforcement', 'To feel important', 'To feel included', 'To express your opinions', 'To feel a sense of certainty in life'],
+    relationshipNeeds: ['Love and intimacy', 'Closeness and connection', 'Validation and reassurance', 'Approval and importance', 'Certainty and consistency', 'Presence - to feel seen, heard, and understood', 'Inclusion and community', 'Collaboration and teamwork'],
+    conflictPatterns: ['Often avoid conflict through people-pleasing', 'If there is conflict, you may work to resolve it between people', 'May become more focused on interpersonal conflict than work conflict', 'Conflict impacts you deeply and can create significant distress', 'Flexible and willing to discuss and resolve conflict', 'Often willing to communicate if a conflict has already taken place', 'Effective compromiser', 'Likely to put your needs for approval from others ahead of your own preferred outcome', 'Sometimes try to manage others’ feelings around conflict above your own'],
+    boundaries: ['Often without boundaries in close relationships', 'May overextend or emotionally abandon yourself when others put up boundaries because this is not part of the way you learned to attach to others', 'Feel afraid of abandonment if you set boundaries', 'Self-sabotage boundaries because you prioritize proximity', 'Often do not realize the importance of healthy boundaries in relationships'],
+    communicationStrategies: ['Often from the point of view of how you feel', 'Over-explain things at times', 'Communicate fairly directly', 'Can be indirect at times to avoid disapproval or interpersonal conflict', 'Often very agreeable and use agreeable language', 'Often like to discuss feelings and perceptions about things', 'Good at sharing your internal world with others and being open', 'Vulnerable'],
+    copingMechanisms: ['Clinginess - trying to maintain proximity', 'Trying to gently provoke the expression of care from a partner, such as making them jealous to provoke a response', 'Testing', 'Seeking validation', 'Attention or approval-seeking behaviors', 'Expression of panic, anxiety, or neediness', 'Criticism of partner', 'Fawning'],
+    expectations: ['My partner should soothe my emotions', 'My partner should give me certainty at all times', 'My partner should know how I feel and read my mind', 'My partner is responsible for meeting all of my needs, and vice versa', 'My partner should be available', 'The romantic relationship should be the highest priority', 'Romantic gestures in a relationship should be frequent'],
   },
   dismissive: {
-    name: 'Dismissive Avoidant', shortName: 'Dismissive Avoidant',
-    essence: 'Self-reliance may feel safer than emotional dependence. When closeness or conflict becomes intense, you may protect yourself by minimizing needs, becoming highly practical, or creating distance.',
-    rootCause: 'This pattern often develops when vulnerability, dependence, or emotional expression was not reliably welcomed. Your system learned that competence and self-containment were safer than needing others, so distance can become the fastest route back to control.',
-    strengths: ['Independent, practical, and resilient', 'Calm and analytical under pressure', 'Comfortable setting limits', 'Thoughtful problem-solver', 'Protective of harmony and autonomy'],
-    coreWounds: ['I am unsafe when I depend on others', 'I may become trapped or overwhelmed', 'My feelings or needs will be dismissed', 'If I am vulnerable, I may be weak or rejected'],
-    fears: ['Losing freedom or being controlled', 'Being criticized or emotionally overwhelmed', 'Having to depend too heavily on another person', 'Conflict that becomes endless or engulfing'],
-    emotions: ['Irritation and frustration', 'Numbness or depletion', 'Shame kept out of view', 'Loneliness that may be difficult to name'],
-    needs: ['Safety and harmony', 'Time and space to process', 'Respect for independence', 'Clear, low-pressure communication', 'Appreciation and intellectual connection'],
-    expectations: ['Space will be respected without punishment', 'Each person can meet many of their own needs', 'Conflict will not consume the relationship', 'Requests will be clear, practical, and contained'],
-    triggers: ['Feeling controlled or pressured', 'Emotional urgency', 'Repeated demands for immediate disclosure', 'Criticism or disrespect', 'A boundary being ignored'],
-    communication: ['May communicate more through actions than words', 'Can become brief, logical, or indirect under stress', 'May avoid conflict or try to end it quickly', 'May need private processing before discussing feelings'],
-    coping: ['Withdrawing to decompress', 'Stonewalling or going quiet', 'Minimizing feelings and needs', 'Over-relying on work, screens, food, alcohol, gaming, or other comforts', 'Passive resistance or delayed engagement'],
-    secureAlternatives: ['State the need for space and name a return time', 'Share one honest feeling before solving the problem', 'Differentiate healthy independence from isolation', 'Let support in through small, specific requests'],
-    growth: ['Name the need for space without disappearing', 'Practice sharing one layer more than feels automatic', 'Return to repair at a specific time', 'Allow interdependence without treating it as loss of self'],
+    name: 'Dismissive Avoidant Attachment', shortName: 'Dismissive Avoidant Attachment',
+    essence: 'You may feel safest relying on yourself and keeping emotional needs private. This can show up as fierce independence, discomfort with vulnerability, and pulling away when relationships begin to feel emotionally intense.',
+    introduction: 'Dismissive-avoidant attachment often develops when a child learns that their emotional needs won\'t reliably be met - or that expressing those needs isn\'t particularly welcome. They may grow up in a home where independence is highly valued, emotions aren\'t talked about much, or vulnerability is minimized with messages like "you\'re fine," "stop crying," or "go figure it out." So the child adapts by learning to soothe themselves and rely less and less on other people. Eventually, they may stop reaching altogether - not because they don\'t need connection, but because needing it has come to feel uncomfortable or unsafe. The nervous system learns, I\'m safest when I take care of myself. In adulthood, this can look like fierce independence, discomfort with vulnerability, and pulling away when relationships begin to feel emotionally intense.',
+    characteristics: ['Intellectual', 'Conflict-avoidant', 'Practical', 'Grounded in your approach', 'Do not let emotions take over', 'Independent', 'Think things through carefully', 'Enjoy endless learning', 'Value security', 'Prioritize harmony and practicality in relationships', 'Deeply care about autonomy', 'Can avoid things instead of approaching them head on', 'Good at speaking up for survival needs', 'Express boundaries', 'Comfortable asking for what you feel you deserve', 'Resilient', 'Work well under pressure', 'Analytical', 'May shut down when feeling stressed', 'Take criticism very personally', 'Slow to warm up in relationships', 'Guarded'],
+    primaryCoreWound: 'I am defective',
+    otherCoreWounds: ['I am unsafe', 'I am trapped', 'I am helpless/incapable', 'I am weak if vulnerable', 'I am not good enough', 'I am/will be powerless', '“Why bother” belief response'],
+    emotionalPatterns: ['Shame', 'Low-level anxiety', 'Irritation', 'Impatience', 'Frustration', 'Overwhelm', 'Numbness', 'Exhaustion/depletion'],
+    fears: ['Being shamed', 'Being criticized and hurt by criticism', 'Being “unsafe”', 'Having to jump too far outside of your comfort zone', 'Having to work with others too much and it draining your energy', 'Seeming incompetent', 'Having conflict', 'Feeling trapped or having to over-commit to things'],
+    personalityNeeds: ['To feel safe', 'Intellectual stimulation', 'An environment with consistent learning', 'Positive reinforcement and words of affirmation', 'To feel valued', 'To feel acknowledged', 'Freedom to be independent and autonomous', 'To feel like your opinions are heard and taken into consideration', 'A certain degree of space', 'Prefer not to work intensively with people or in teams', 'To feel that if you speak up, your stance on a topic will be valued', 'To feel respected', 'To feel like the people around you are logical and rational', 'To feel like people around you are direct'],
+    relationshipNeeds: ['Safety', 'Harmony', 'Acceptance', 'Trust', 'Comfort', 'Learning/intellectual connection', 'Appreciation and acknowledgement', 'Independence', 'Freedom', 'Understanding', 'To feel wanted'],
+    conflictPatterns: ['Often avoid conflict', 'Will internalize frustrations more often than not', 'Will sometimes pretend you agree and then do what you want anyway as an avoidance strategy', 'May even prefer to stop talking to people altogether rather than approach conflict', 'Are careful not to use awful words in conflict and will try to remain neutral', 'Can remain fairly non-emotional and grounded if you do enter into conflict', 'Rational', 'Will try to see both sides', 'Will analyze situations until you feel like you have come up with the most rational approach'],
+    boundaries: ['Excellent at setting large, strong boundaries', 'Assume others are good at setting their boundaries and will speak up for themselves too', 'May struggle to set many small boundaries', 'May not know how to communicate, negotiate, or set boundaries in romantic relationships around emotional situations', 'May disconnect or become avoidant if you feel that a boundary has been crossed', 'May assume others do not understand you and your boundaries', 'May set boundaries via actions more than via words'],
+    communicationStrategies: ['Communicate more actions than words', 'May communicate very indirectly over text when trying to avoid conflict', 'Avoid conflict or try to get out of it as quickly as possible, sometimes without resolution', 'Repress feelings and may minimize others’ feelings incidentally', 'Often avoid anything too personal or private and vulnerable', 'Do not share needs enough outside of survival needs', 'Will sometimes pretend you are doing better than you are to avoid showing weakness', 'May engage in more surface conversation until comfortable'],
+    copingMechanisms: ['Withdrawing to decompress', 'Stonewalling', 'Ignoring or dismissing', 'Passive aggression', 'Numbing', 'Avoiding', 'Excess of creature comforts, such as binging on TV, food, gaming, alcohol, or gambling'],
+    expectations: ['My partner should always be understanding when I need space', 'Conflict should not be occurring in this relationship', 'Being with a partner should not mean making compromises to keep the relationship fully untouched', 'My partner and I should each meet our own needs and then come together without too much investment', 'My partner should not soothe through me or emotionally rely on me', 'My partner should be the perfect match, with flaw-finding sometimes used subconsciously as a strategy to avoid conflict', 'My level of independence should not change versus healthy interdependence'],
   },
   fearful: {
-    name: 'Fearful Avoidant', shortName: 'Fearful Avoidant',
-    essence: 'You may deeply want closeness while also experiencing it as risky. Your system can move between reaching for connection and protecting itself through distance, especially when trust or safety feels uncertain.',
-    rootCause: 'This pattern often forms when closeness was both deeply wanted and connected with fear, unpredictability, betrayal, or powerlessness. Your system learned two protective moves—reach for safety and retreat from danger—so it may alternate between them quickly.',
-    strengths: ['Deep, perceptive, and emotionally sensitive', 'Resilient and courageous', 'Generous, nurturing, and empathetic', 'Strong awareness of nuance and trust', 'Passionate and capable of profound connection'],
-    coreWounds: ['I may be betrayed or abandoned', 'I am unsafe when I lose control', 'I may be trapped, powerless, or humiliated', 'I am unworthy, weak, or not good enough'],
-    fears: ['Betrayal or deception', 'Being trapped, controlled, or powerless', 'Being publicly shamed or seen as “bad”', 'Being emotionally attacked or abandoned'],
-    emotions: ['Fear and anxiety', 'Anger and hurt', 'Overwhelm and frustration', 'Guilt or shame'],
-    needs: ['Trust and emotional depth', 'Predictability and patient pacing', 'Independence alongside intimacy', 'Respectful, explicit boundaries', 'Presence, passion, and growth'],
-    expectations: ['Trust will not be broken', 'A partner will consistently show that you are wanted', 'Independence will be respected', 'Your thoughts, feelings, and perceptions will be taken seriously'],
-    triggers: ['Mixed signals or secrecy', 'Feeling trapped or abandoned', 'Disrespect or dismissal', 'Sudden changes or pressure', 'Boundary violations or loss of control'],
-    communication: ['May explain intensely and notice subtle inconsistencies', 'Can move from agreeable to confrontational when threatened', 'Wants emotional depth but may limit vulnerability', 'May fear appearing weak or giving another person leverage'],
-    coping: ['Reaching for connection and then withdrawing', 'Testing loyalty or investigating for certainty', 'Fight, flight, freeze, or people-pleasing', 'Stonewalling, criticism, or emotional volatility', 'Using isolation or comforts to escape overwhelm'],
-    secureAlternatives: ['Slow the reach-withdraw cycle before making a decision', 'Ask for paced connection and clear facts', 'Separate present cues from earlier danger', 'Use boundaries before distress becomes an explosion'],
-    growth: ['Build trust through small, consistent experiences', 'Replace all-or-nothing decisions with paced choices', 'Practice direct requests without testing', 'Develop regulation skills that work before and during conflict'],
+    name: 'Fearful Avoidant Attachment', shortName: 'Fearful Avoidant Attachment',
+    essence: 'You may deeply want love and connection while also experiencing closeness as unsafe. This can create a push-pull pattern: craving intimacy, then withdrawing or shutting down when connection feels vulnerable.',
+    introduction: 'Fearful-avoidant attachment often forms when the person a child depends on for safety is also, at times, a source of fear, unpredictability, emotional chaos, or hurt. The child is caught in an impossible bind: I need you to feel safe, but I don\'t always feel safe with you. They may desperately want comfort and connection while simultaneously learning that getting too close can lead to pain. Their nervous system adapts by becoming highly alert to both abandonment and intimacy. This creates the push-pull pattern we often see later in relationships - come close to me, but not too close. As adults, they may crave deep love and connection, yet suddenly withdraw, shut down, or become frightened once that connection feels vulnerable. Underneath both sides of the pattern is often the same longing: I want to feel safe enough to love and be loved.',
+    characteristics: ['Present', 'Hypervigilant', 'Charming', 'Likeable', 'Generous in close relationships', 'Intense', 'Hot and cold in close relationships', 'Suspicious', 'Hypervigilant', 'Extremist at times', 'All-or-nothing thinker', 'Emotional', 'Deep', 'Nurturing', 'Resilient', 'Headstrong'],
+    primaryCoreWound: 'I will be betrayed',
+    otherCoreWounds: ['I am unsafe', 'I am unworthy', 'I am bad', 'I am/will be abandoned', 'I am trapped', 'I am helpless/powerless/out of control', 'I am not good enough', 'I am disrespected', 'I am/will be unloved', 'I am weak'],
+    emotionalPatterns: ['Angry', 'Hurt', 'Frustrated when feeling trapped', 'Overwhelmed', 'Pressured', 'Guilty', 'Ashamed', 'Anxious', 'Offended'],
+    fears: ['Being betrayed', 'Feeling unworthy', 'Feeling trapped, helpless, or powerless', 'Being publicly shamed', 'Getting in trouble or being seen as “bad”', 'Being verbally or emotionally attacked with a strong “fight back” response'],
+    personalityNeeds: ['Growth/opportunity', 'To feel empowered', 'To feel seen and heard', 'To feel connected', 'Respond well to criticism if it is delivered respectfully', 'To feel understood by others', 'To express your opinions', 'To feel respected by others', 'To feel emotionally connected'],
+    relationshipNeeds: ['Emotional depth', 'Passion', 'Trust', 'Presence', 'Safety', 'Novelty', 'Growth', 'Independence', 'Freedom', 'Intimacy', 'To feel wanted'],
+    conflictPatterns: ['Oscillate from people-pleasing to wanting to stand up for yourself at times', 'Sometimes jump the gun and make assumptions about a situation before completely investigating it', 'Can act from a place of panic and volatility at times', 'Feel a need to over-defend yourself in conflict at times', 'Can become spiteful if you feel hurt', 'Ultimately, once the dust has settled, you are often excellent at empathizing and seeing another’s perspective', 'Like to handle things directly or may become avoidant', 'Likely to put your need for approval ahead of your own preferred outcome at times', 'At times try to manage others’ feelings around conflict above your own', 'Can struggle with guilt post-conflict', 'Sometimes can be a bit too sharp with your words'],
+    boundaries: ['Often without boundaries in close relationships', 'Eventually become frustrated with feeling taken advantage of, partially due to lack of boundaries, and at times lash out, feel guilty, and return to being boundaryless or over-giving', 'May feel like you are good at setting boundaries, but if you look closely you may set boundaries almost exclusively from a place of charged emotion or anger'],
+    communicationStrategies: ['Over-explain things at times', 'Communicate very directly', 'Can oscillate from being agreeable to confrontational', 'Often like to discuss feelings and perceptions about things', 'Sometimes avoid anything too personal, such as how you feel, anything private, or vulnerable', 'Do not share needs enough outside of survival needs', 'Will sometimes pretend you are doing better than you are to avoid showing weakness'],
+    copingMechanisms: ['Testing', 'Withdrawing to decompress', 'Stonewalling', 'Spitefulness', 'Criticism', 'Emotional volatility', 'Fight, flight, freeze, and fawning', 'Excess of creature comforts, such as binging on TV, food, gaming, alcohol, or gambling'],
+    expectations: ['Nobody should ever break their trust', 'No lying, ever', 'A romantic partner should be as giving as they are', 'A romantic partner should always respect their independence', 'They should always feel wanted by their partner', 'Partner should always make them feel wanted', 'Partner should be faithful in thought, emotion, opinion, and action'],
   },
 };
 
@@ -183,7 +190,10 @@ export function scoreAssessment(answers: number[]): AssessmentScores {
     ranked,
     primary: ranked[0],
     secondary: ranked[1],
-    isBlend: alignments[ranked[0]] - alignments[ranked[1]] <= 8,
+    // The paid deliverable always identifies one definitive primary style.
+    // Secondary scores remain available for internal context but never create
+    // a second "winner" or a blended report.
+    isBlend: false,
     domainScores,
   };
 }

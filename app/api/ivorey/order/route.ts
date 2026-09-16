@@ -1,4 +1,5 @@
 import { blobIsConfigured, savePurchase } from '@/lib/blob-store';
+import { ASSESSMENT_PRICE_CENTS, PRODUCT_NAME } from '@/lib/product';
 
 export const runtime = 'nodejs';
 
@@ -42,9 +43,9 @@ export async function POST(request: Request) {
     custom.orderId, custom.order_id, contactId,
   ) || `ivorey-${crypto.randomUUID()}`;
   const firstName = firstString(body.firstName, body.first_name, contact.firstName, contact.first_name, custom.firstName, custom.first_name) || 'Customer';
-  const productName = firstString(body.productName, body.product_name, order.productName, order.product_name, custom.productName, custom.product_name) || 'Personalized Attachment Profile';
+  const productName = firstString(body.productName, body.product_name, order.productName, order.product_name, custom.productName, custom.product_name) || PRODUCT_NAME;
   const rawAmount = firstString(body.amountCents, body.amount_cents, payment.amountCents, payment.amount_cents, custom.amountCents, custom.amount_cents);
-  const amount = Number(rawAmount || 4700);
+  const amount = Number(rawAmount || ASSESSMENT_PRICE_CENTS);
 
   await savePurchase({
     id: crypto.randomUUID(),
@@ -53,7 +54,7 @@ export async function POST(request: Request) {
     email,
     ivoreyContactId: contactId || null,
     productName: productName.slice(0, 160),
-    amountCents: Number.isFinite(amount) ? amount : 4700,
+    amountCents: Number.isFinite(amount) ? amount : ASSESSMENT_PRICE_CENTS,
     status: 'paid',
     createdAt: new Date().toISOString(),
   });
