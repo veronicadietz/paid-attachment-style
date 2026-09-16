@@ -1,0 +1,7 @@
+Replace these three files in the GitHub repository, preserving their folders:
+
+app/page.tsx
+lib/assessment.ts
+lib/report.ts
+
+Commit all three changes together. Vercel should deploy automatically from the main branch.

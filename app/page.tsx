@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight, CalendarDays, Check, Clock3, Download, LoaderCir
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
-import { AssessmentScores, profiles, questions } from '@/lib/assessment';
+import { AssessmentScores, normalizeProfileShares, PROFILE_DISPLAY_ORDER, profiles, questions } from '@/lib/assessment';
 import { DEBRIEF_BOOKING_URL } from '@/lib/product';
 
 type Phase = 'intro' | 'identity' | 'quiz' | 'submitting' | 'results';
@@ -72,6 +72,7 @@ export default function Home() {
     const { scores } = result;
     return scores.isBlend ? `${profiles[scores.primary].shortName} + ${profiles[scores.secondary].shortName}` : profiles[scores.primary].name;
   }, [result]);
+  const profileShares = useMemo(() => result ? normalizeProfileShares(result.scores) : null, [result]);
 
   async function confirmIdentity(event: { preventDefault(): void }) {
     event.preventDefault();
@@ -164,7 +165,7 @@ export default function Home() {
 
     {phase === 'results' && result && <section className="relative z-10 mx-auto w-full max-w-5xl px-5 pb-20 pt-5 sm:px-8 sm:pt-10">
       <div className="results-hero"><p className="step-label">{firstName}, your profile is ready</p><h1 className="mt-4 font-heading text-4xl font-semibold leading-tight sm:text-5xl">{profileLabel}</h1><p className="mt-5 max-w-2xl font-sans text-lg leading-8 text-muted-foreground">{profiles[result.scores.primary].essence}</p>{result.scores.isBlend && <p className="mt-4 max-w-2xl font-sans leading-7 text-muted-foreground">Your {profiles[result.scores.secondary].shortName} pattern is close enough to matter. Your PDF explains how both patterns can appear together.</p>}<div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"><Button size="lg" className="h-12 rounded-full bg-primary px-7 font-sans text-white hover:bg-primary/90" onClick={() => window.location.assign(result.downloadUrl)}><Download className="size-4" /> Download my PDF</Button><Button size="lg" variant="outline" className="h-12 rounded-full border-primary px-7 font-sans text-primary hover:bg-primary/5 hover:text-primary" onClick={() => window.open(DEBRIEF_BOOKING_URL, '_blank', 'noopener,noreferrer')}><CalendarDays className="size-4" /> Book my results debrief</Button><div className="inline-flex items-center gap-2 px-2 font-sans text-sm text-muted-foreground"><Mail className="size-4 text-primary" /> {result.emailStatus === 'sent_to_ivorey' ? `Ivorey is sending a copy to ${email}` : 'Your PDF is ready to download now.'}</div></div></div>
-      <div className="mt-6 grid gap-4 md:grid-cols-3"><ScoreCard label="Attachment anxiety" score={result.scores.anxiety} color="rose" /><ScoreCard label="Attachment avoidance" score={result.scores.avoidance} color="navy" /><ScoreCard label="Secure functioning" score={result.scores.secureCapacity} color="sage" /></div><p className="mt-6 text-center font-sans text-xs leading-5 text-muted-foreground">These are educational profile scores, not clinical percentiles or a diagnosis.</p>
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{profileShares && PROFILE_DISPLAY_ORDER.map((key) => <ScoreCard key={key} label={profiles[key].name} score={profileShares[key]} color={key === result.scores.primary ? 'rose' : 'navy'} />)}</div><p className="mt-6 text-center font-sans text-xs leading-5 text-muted-foreground">These percentages show how your four attachment-style scores compare with one another and total 100%. They are educational results, not a clinical diagnosis.</p>
     </section>}
 
     <footer className="relative z-10 border-t border-border/70 px-5 py-6 text-center font-sans text-xs leading-5 text-muted-foreground">This profile is educational and is not a diagnosis or a substitute for mental health care.</footer>
@@ -175,6 +176,6 @@ function IntroCopy() {
   return <div><p className="eyebrow mb-5"><span /> Securely Loved</p><h1 className="max-w-2xl font-heading text-4xl font-semibold leading-[1.08] tracking-[-0.03em] sm:text-5xl lg:text-6xl">Understand the patterns behind how you love.</h1><p className="mt-6 max-w-xl font-sans text-lg leading-8 text-muted-foreground">Your personalized profile looks beneath the label to reveal how you seek closeness, protect yourself, communicate, and repair.</p><div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 font-sans text-sm text-muted-foreground"><span className="inline-flex items-center gap-2"><Clock3 className="size-4 text-primary" /> 8-10 minutes</span><span className="inline-flex items-center gap-2"><Sparkles className="size-4 text-primary" /> 32 thoughtful questions</span><span className="inline-flex items-center gap-2"><ShieldCheck className="size-4 text-primary" /> Private and educational</span></div></div>;
 }
 
-function ScoreCard({ label, score, color }: { label: string; score: number; color: 'rose' | 'navy' | 'sage' }) {
-  return <div className="score-card"><div className="flex items-center justify-between"><span className="font-sans text-sm font-medium">{label}</span><strong className="font-heading text-2xl">{score}</strong></div><div className="mt-4 h-2 overflow-hidden rounded-full bg-secondary"><div className={`h-full rounded-full score-${color}`} style={{ width: `${score}%` }} /></div><div className="mt-4 inline-flex items-center gap-2 font-sans text-xs text-muted-foreground"><Check className="size-3.5 text-primary" /> Included in your report</div></div>;
+function ScoreCard({ label, score, color }: { label: string; score: number; color: 'rose' | 'navy' }) {
+  return <div className="score-card"><div className="flex items-start justify-between gap-3"><span className="font-sans text-sm font-medium leading-5">{label}</span><strong className="shrink-0 font-heading text-2xl">{score}%</strong></div><div className="mt-4 h-2 overflow-hidden rounded-full bg-secondary"><div className={`h-full rounded-full score-${color}`} style={{ width: `${score}%` }} /></div><div className="mt-4 inline-flex items-center gap-2 font-sans text-xs text-muted-foreground"><Check className="size-3.5 text-primary" /> Part of your 100% profile</div></div>;
 }

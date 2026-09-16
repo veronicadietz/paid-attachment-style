@@ -1,5 +1,5 @@
 import { PDFDocument, PDFPage, PDFFont, PDFString, StandardFonts, rgb } from 'pdf-lib';
-import { AssessmentScores, ProfileKey, profiles } from './assessment';
+import { AssessmentScores, normalizeProfileShares, PROFILE_DISPLAY_ORDER, profiles } from './assessment';
 import { DEBRIEF_BOOKING_URL } from './product';
 
 const W = 612, H = 792, M = 52, CW = W - M * 2;
@@ -42,17 +42,6 @@ function addLink(page:PDFPage,url:string,x:number,y:number,width:number,height:n
   }));
   page.node.addAnnot(annotation);
 }
-function normalizedShares(scores:AssessmentScores){
-  const keys:ProfileKey[]=['secure','anxious','fearful','dismissive'];
-  const total=keys.reduce((sum,key)=>sum+scores.alignments[key],0)||1;
-  const exact=keys.map(key=>({key,value:scores.alignments[key]/total*100}));
-  const result=Object.fromEntries(exact.map(({key,value})=>[key,Math.floor(value)])) as Record<ProfileKey,number>;
-  let remaining=100-Object.values(result).reduce((sum,value)=>sum+value,0);
-  exact.sort((a,b)=>(b.value-Math.floor(b.value))-(a.value-Math.floor(a.value)));
-  for(let i=0;i<remaining;i++) result[exact[i].key]+=1;
-  return result;
-}
-
 export async function createAttachmentReport({firstName,completedAt,scores,logoBytes}:Input){
   const pdf=await PDFDocument.create();
   pdf.setTitle(`${firstName}'s Personalized Attachment Profile`); pdf.setAuthor('Bev Mitelman, M.A. - Securely Loved');
@@ -133,11 +122,11 @@ export async function createAttachmentReport({firstName,completedAt,scores,logoB
   // One primary winner; four style shares total exactly 100%.
   {
     const page=addPage('Your primary attachment style','Section 1 - Your results');
-    const shares=normalizedShares(scores);
+    const shares=normalizeProfileShares(scores);
     page.drawText(profile.name,{x:M,y:568,size:18,font:f.headingBold,color:navy});
     const essenceBottom=para(page,profile.essence,f.body,{x:M,y:538,width:CW,size:12,lineHeight:17,color:muted});
     let y=Math.min(486,essenceBottom-24);
-    for(const key of (['anxious','secure','fearful','dismissive'] as ProfileKey[])){
+    for(const key of PROFILE_DISPLAY_ORDER){
       const value=shares[key],color=key===scores.primary?rose:ink;
       page.drawText(profiles[key].name,{x:M,y,size:11,font:f.bodyBold,color:ink}); right(page,`${value}%`,f.bodyBold,11,W-M,y,color);
       page.drawRectangle({x:M,y:y-18,width:CW,height:10,color:rgb(.94,.91,.92)}); page.drawRectangle({x:M,y:y-18,width:CW*value/100,height:10,color}); y-=51;

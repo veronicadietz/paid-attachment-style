@@ -1,6 +1,7 @@
 export type Axis = 'anxiety' | 'avoidance' | 'secure';
 export type Domain = 'closeness' | 'trust' | 'needs' | 'communication' | 'conflict' | 'boundaries' | 'regulation' | 'repair';
 export type ProfileKey = 'secure' | 'anxious' | 'dismissive' | 'fearful';
+export const PROFILE_DISPLAY_ORDER: ProfileKey[] = ['anxious', 'dismissive', 'fearful', 'secure'];
 
 export type Question = {
   id: number;
@@ -83,7 +84,7 @@ export const profiles: Record<ProfileKey, AttachmentProfile> = {
     expectations: ['A partner should want to resolve things', 'Conflict is normal but should not be excessive', 'Both parties should be able to be heard, understood, and seen in a relationship', 'Interdependence', 'Partners can emotionally rely on each other', 'Partners will work through things when faced with challenges', 'Difficult moments happen in relationships, but they will work as a team through them', 'A relationship should extend to all areas of life'],
   },
   anxious: {
-    name: 'Anxious Preoccupied Attachment', shortName: 'Anxious Preoccupied Attachment',
+    name: 'Anxious Preoccupied', shortName: 'Anxious Preoccupied',
     essence: 'You may stay highly tuned in to shifts in mood, distance, and attention because connection can feel uncertain. This can show up as overthinking, reassurance-seeking, fear of abandonment, and feeling especially activated when someone you love pulls away.',
     introduction: 'Anxious attachment often develops when love and emotional availability feel inconsistent or unpredictable. Sometimes a caregiver is warm, attentive, and deeply connected - and other times they may be distracted, unavailable, overwhelmed, or difficult to reach emotionally. The child doesn\'t know which version of connection they\'re going to get, so they learn to stay very tuned in to the caregiver. They may become especially sensitive to changes in mood, tone, distance, or attention because noticing those shifts helps them preserve connection. The nervous system essentially learns, I need to stay close and pay attention, because connection could disappear. As adults, this can show up as overthinking, reassurance-seeking, fear of abandonment, and feeling especially activated when someone they love begins to pull away.',
     characteristics: ['Charismatic', 'Thoughtful', 'Kind', 'Attentive in close relationships', 'Warm', 'Likeable', 'Move quickly in relationships of all types', 'Friendly', 'Flexible', 'Supportive', 'Collaborative', 'Trusting of connection', 'Prioritize relationships', 'Value social interaction and inclusion'],
@@ -146,6 +147,16 @@ export type AssessmentScores = {
   isBlend: boolean;
   domainScores: Record<Domain, number>;
 };
+
+export function normalizeProfileShares(scores: AssessmentScores) {
+  const total = PROFILE_DISPLAY_ORDER.reduce((sum, key) => sum + scores.alignments[key], 0) || 1;
+  const exact = PROFILE_DISPLAY_ORDER.map((key) => ({ key, value: scores.alignments[key] / total * 100 }));
+  const result = Object.fromEntries(exact.map(({ key, value }) => [key, Math.floor(value)])) as Record<ProfileKey, number>;
+  let remaining = 100 - Object.values(result).reduce((sum, value) => sum + value, 0);
+  exact.sort((a, b) => (b.value - Math.floor(b.value)) - (a.value - Math.floor(a.value)));
+  for (let index = 0; index < remaining; index += 1) result[exact[index].key] += 1;
+  return result;
+}
 
 const clamp = (value: number) => Math.max(0, Math.min(100, Math.round(value)));
 
